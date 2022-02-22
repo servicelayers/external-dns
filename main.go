@@ -160,7 +160,7 @@ func main() {
 	} else {
 		domainFilter = endpoint.NewDomainFilterWithExclusions(cfg.DomainFilter, cfg.ExcludeDomains)
 	}
-	zoneNameFilter := endpoint.NewDomainFilter(cfg.ZoneNameFilter)
+	zoneNameFilter := provider.NewZoneNameFilter(cfg.ZoneNameFilter)
 	zoneIDFilter := provider.NewZoneIDFilter(cfg.ZoneIDFilter)
 	zoneTypeFilter := provider.NewZoneTypeFilter(cfg.AWSZoneType)
 	zoneTagFilter := provider.NewZoneTagFilter(cfg.AWSZoneTagFilter)
@@ -187,6 +187,7 @@ func main() {
 			aws.AWSConfig{
 				DomainFilter:         domainFilter,
 				ZoneIDFilter:         zoneIDFilter,
+				ZoneNameFilter:       zoneNameFilter,
 				ZoneTypeFilter:       zoneTypeFilter,
 				ZoneTagFilter:        zoneTagFilter,
 				BatchChangeSize:      cfg.AWSBatchChangeSize,
